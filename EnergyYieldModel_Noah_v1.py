@@ -17,9 +17,6 @@ y_training_data_2011 = y_training_data_2011.to_numpy()
 x_testing_data_2011 = x_testing_data_2011.to_numpy()
 y_testing_data_2011 = y_testing_data_2011.to_numpy()
 
-#print(y_training_data_2011)
-#print(y_testing_data_2011)
-
 # set up prediction data
 prediction_data_2014 = pd.read_csv(r'Test/gt_2014.csv')
 x_prediction_data_2014 = prediction_data_2014.drop(columns=['CO', 'NOX'])
@@ -28,7 +25,7 @@ x_prediction_data_2014 = x_prediction_data_2014.to_numpy()
 
 # create layers and model
 inputs = keras.Input(shape=(8,))
-outputs = Dense(1, activation='relu')(inputs)
+outputs = Dense(1, activation='linear')(inputs)
 model = keras.Model(inputs=inputs, outputs=outputs, name="GasTurbine_Model")
 
 # summarize layers
@@ -40,7 +37,7 @@ model.compile(
     optimizer=keras.optimizers.Adam(),
     metrics=['mean_squared_error']
 )
-history = model.fit(x_training_data_2011, y_training_data_2011, batch_size=64, epochs=1)
+history = model.fit(x_training_data_2011, y_training_data_2011, batch_size=64, epochs=50)
 
 # evaluate model performance on test data
 results = model.evaluate(x_testing_data_2011, y_testing_data_2011, batch_size=64)
