@@ -11,10 +11,10 @@ df = pd.read_csv('Train/gt_2011.csv')
 
 # Configuration
 # Can add or remove category names here to use as model inputs/outputs as needed
-input_categories = ['AT' , 'AP' , 'AH', 'AFDP', 'GTEP', 'TIT', 'TAT', 'CDP']
-output_categories = ['TEY', 'CO', 'NOX']
+input_categories = ['GTEP', 'CDP', 'TIT', 'TAT']
+output_categories = ['TEY']
 # Name the model will be saved as
-model_name = 'Example_model'
+model_name = 'TEY_Model'
 # Percentage of the data that will be used for training
 # Percentage of data for validation = 1-training_split
 training_data_split = 80
