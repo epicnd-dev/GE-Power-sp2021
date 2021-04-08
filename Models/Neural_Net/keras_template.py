@@ -7,7 +7,7 @@ import time
 # --TODO: Get df from data cleaner
 ####
 # Temporary load data for testing
-df = pd.read_csv('Train/gt_2011.csv')
+df = pd.read_csv('../../Data/Train/gt_2011.csv')
 
 # Configuration
 # Can add or remove category names here to use as model inputs/outputs as needed
