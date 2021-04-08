@@ -6,7 +6,7 @@ from keras.layers import Activation, Dense
 from sklearn.model_selection import train_test_split
 
 # set up training and testing data
-data_2011 = pd.read_csv(r'Train/gt_2011.csv')
+data_2011 = pd.read_csv(r'../../Data/Train/gt_2011.csv')
 train, test = train_test_split(data_2011, test_size=0.2)
 x_training_data_2011 = train.drop(columns=['TEY', 'CO', 'NOX'])
 y_training_data_2011 = train.drop(columns=['AT','AH','AP','AFDP','GTEP','TIT','TAT','CDP', 'CO', 'NOX'])
@@ -18,7 +18,7 @@ x_testing_data_2011 = x_testing_data_2011.to_numpy()
 y_testing_data_2011 = y_testing_data_2011.to_numpy()
 
 # set up prediction data
-prediction_data_2014 = pd.read_csv(r'Test/gt_2014.csv')
+prediction_data_2014 = pd.read_csv(r'../../Data/Test/gt_2014.csv')
 x_prediction_data_2014 = prediction_data_2014.drop(columns=['CO', 'NOX'])
 x_prediction_data_2014 = x_prediction_data_2014.to_numpy()
 

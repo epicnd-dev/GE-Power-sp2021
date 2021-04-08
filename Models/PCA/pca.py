@@ -7,8 +7,8 @@ import matplotlib.pyplot as plt
 from scipy.optimize import curve_fit
 
 
-df1 = pd.read_csv('Train/gt_2011.csv')
-df2 = pd.read_csv('Train/gt_2012.csv')
+df1 = pd.read_csv('../../Data/Train/gt_2011.csv')
+df2 = pd.read_csv('../../Data/Train/gt_2012.csv')
 frames = [df1, df2]
 df = pd.concat(frames)
 
