@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 from matplotlib import pyplot as plt
 
 # set up training and testing data
-data_2011 = pd.read_csv(r'Train/gt_2011.csv')
+data_2011 = pd.read_csv(r'../../Data/Train/gt_2011.csv')
 train, test = train_test_split(data_2011, test_size=0.15)
 train, val = train_test_split(train, test_size=.18)
 x_train = train.drop(columns=['TEY', 'CO', 'NOX'])
