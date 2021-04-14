@@ -31,14 +31,15 @@ y_test = y_test.to_numpy()
 
 # create layers and model
 inputs = keras.Input(shape=(8,))
-outputs = Dense(1, activation='linear')(inputs)
+hidden1 = Dense(4, activation='relu')(inputs)
+outputs = Dense(1, activation='linear')(hidden1)
 model = keras.Model(inputs=inputs, outputs=outputs, name="GasTurbine_Model")
 
 # summarize layers
 print(model.summary())
 
 # compile and fit model
-model.compile( 
+model.compile(
     loss=keras.losses.MeanSquaredError(),
     optimizer=keras.optimizers.Adam(),
     metrics=['mean_squared_error']
