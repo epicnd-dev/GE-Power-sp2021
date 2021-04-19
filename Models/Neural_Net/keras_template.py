@@ -60,7 +60,7 @@ history = model.fit(x=input_data, y=output_data, epochs=epochs, validation_data=
 # Saving the model to files
 # Create model name based on model_name + date/time (for now)
 time_str = time.strftime("%Y%m%d-%H%M%S")
-file_name = 'Models/' + model_name + '-' + time_str
+file_name = 'Models/Neural_Net/Models/' + model_name + '-' + time_str
 
 # Save model training stats to a csv for future use
 hist_df = pd.DataFrame(history.history) 
