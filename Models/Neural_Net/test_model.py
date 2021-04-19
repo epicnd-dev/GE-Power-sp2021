@@ -5,7 +5,7 @@ from tensorflow.keras.models import load_model
 from sklearn.metrics import mean_squared_error
 
 # Desired inputs and outputs from the model
-input_categories = ['GTEP', 'CDP', 'TIT', 'TAT']
+input_categories = ['GTEP', 'CDP', 'TIT', 'TAT', 'AFDP']
 output_categories = ["TEY"]
 
 # Path[s] to data files that -do- have the output you're looking for
@@ -21,7 +21,8 @@ generate_paths = {
 
 # Load the model in
 model_path = "Models/Neural_Net/Models/[NAME_OF_MODEL_HERE]"
-#model_path = "Models/Neural_Net/Models/TEY_Model-20210419-191706"
+#model_path = "Models/Neural_Net/Models/TEY_Model-20210419-191706" # 4-input best
+#model_path = "Models/Neural_Net/Models/TEY_Model-20210419-192245_5_in" # 5-input best
 model = load_model(model_path)
 
 # Test how well the model predicts known values
@@ -37,6 +38,21 @@ for year in validation_paths.keys():
     # Print the MSE
     print("MSE of predicted", year, "values vs expected values:", mean_squared_error(real_outputs, predicted))
 
+    for i in range(len(output_categories)):
+        # Save the predicted value to CSV
+        file_path = "Models/Neural_Net/Predicted_Values/"
+        file_name = str(year) + "_Predicted_" + output_categories[i] + "[NAME_OF_MODEL_HERE]"
+        #file_name = str(year) + "_Predicted_" + output_categories[i] + "_Carter"
+        #file_name = str(year) + "_Predicted_" + output_categories[i] + "_Carter_5_in"
+        
+        predicted = predicted[:,i]
+        
+        # Save the nunbers to a csv for future use
+        pred_df = pd.DataFrame(predicted) 
+        pred_csv_file = file_path + file_name + ".csv"
+        with open(pred_csv_file, mode='w') as f:
+            pred_df.to_csv(f)
+
 
 
 # Predict unknown values
@@ -50,8 +66,10 @@ for year in generate_paths.keys():
 
     for i in range(len(output_categories)):
         # Save the predicted value to CSV
-        file_path = "Models/Neural_Net/Predicted_Values/[NAME_OF_MODEL_HERE]"
-        file_name = str(year) + "_Predicted_" + output_categories[i] + "_Carter"
+        file_path = "Models/Neural_Net/Predicted_Values/"
+        file_name = str(year) + "_Predicted_" + output_categories[i] + "[NAME_OF_MODEL_HERE]"
+        #file_name = str(year) + "_Predicted_" + output_categories[i] + "_Carter"
+        #file_name = str(year) + "_Predicted_" + output_categories[i] + "_Carter_5_in"
         
         predicted = predicted[:,i]
         

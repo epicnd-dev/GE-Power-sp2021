@@ -11,7 +11,7 @@ df = pd.concat(frames)
 
 # Configuration
 # Can add or remove category names here to use as model inputs/outputs as needed
-input_categories = ['GTEP', 'CDP', 'TIT', 'TAT']
+input_categories = ['GTEP', 'CDP', 'TIT', 'TAT', 'AFDP']
 output_categories = ['TEY']
 # Name the model will be saved as
 model_name = 'TEY_Model'
@@ -60,7 +60,7 @@ history = model.fit(x=input_data, y=output_data, epochs=epochs, validation_data=
 # Saving the model to files
 # Create model name based on model_name + date/time (for now)
 time_str = time.strftime("%Y%m%d-%H%M%S")
-file_name = 'Models/Neural_Net/Models/' + model_name + '-' + time_str
+file_name = 'Models/Neural_Net/Models/' + model_name + '-' + time_str + "_5_in"
 
 # Save model training stats to a csv for future use
 hist_df = pd.DataFrame(history.history) 
