@@ -21,7 +21,7 @@ generate_paths = {
 
 # Load the model in
 model_path = "Models/Neural_Net/Models/[NAME_OF_MODEL_HERE]"
-#model_path = "Models/Neural_Net/Models/TEY_Model-20210331-195218"
+#model_path = "Models/Neural_Net/Models/TEY_Model-20210419-191706"
 model = load_model(model_path)
 
 # Test how well the model predicts known values
@@ -50,8 +50,8 @@ for year in generate_paths.keys():
 
     for i in range(len(output_categories)):
         # Save the predicted value to CSV
-        file_path = "Models/Neural_Net/Predicted_Values/"
-        file_name = str(year) + "_Predicted_" + output_categories[i] + "_[Insert_Model_Name_Here]"
+        file_path = "Models/Neural_Net/Predicted_Values/[NAME_OF_MODEL_HERE]"
+        file_name = str(year) + "_Predicted_" + output_categories[i] + "_Carter"
         
         predicted = predicted[:,i]
         
