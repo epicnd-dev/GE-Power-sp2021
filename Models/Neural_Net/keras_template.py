@@ -4,10 +4,10 @@ import numpy as np
 import pandas as pd
 import time
 
-# --TODO: Get df from data cleaner
-####
-# Temporary load data for testing
-df = pd.read_csv('../../Data/Train/gt_2011.csv')
+df1 = pd.read_csv('Data/Train/gt_2011.csv')
+df2 = pd.read_csv('Data/Train/gt_2012.csv')
+frames = [df1, df2]
+df = pd.concat(frames)
 
 # Configuration
 # Can add or remove category names here to use as model inputs/outputs as needed
@@ -19,7 +19,7 @@ model_name = 'TEY_Model'
 # Percentage of data for validation = 1-training_split
 training_data_split = 80
 # Number of epochs the model will be trained with
-epochs = 30
+epochs = 50
 
 # Format the dataframe for Keras, based on the lists of categories above
 input_df = pd.DataFrame(df, columns=input_categories)
@@ -43,14 +43,11 @@ model = Sequential()
 model.add(Dense(20, input_dim=len(input_df.columns), activation='relu'))
 
 # Inner layers
-model.add(Dense(20, activation='relu'))
+model.add(Dense(10, activation='relu'))
 model.add(Dense(20, activation='relu'))
 
 # Output layer - number of outputs
-model.add(Dense(len(output_df.columns)))
-
-
-
+model.add(Dense(len(output_df.columns), activation="linear"))
 
 # Compile model - can play around with parameters here
 model.compile(optimizer='adam', loss='mean_squared_error')
