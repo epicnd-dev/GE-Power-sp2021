@@ -8,10 +8,13 @@ from matplotlib import pyplot as plt
 
 # set up data
 data_2011 = pd.read_csv(r'../../Data/Train/gt_2011.csv')
+data_2012 = pd.read_csv(r'../../Data/Train/gt_2012.csv')
+frames = [data_2011, data_2012]
+data = pd.concat(frames)
 #train, test = train_test_split(data_2011, test_size=0.15)
 #train, val = train_test_split(train, test_size=.18)
-x_data = data_2011.drop(columns=['TEY', 'CO', 'NOX'])
-y_data = data_2011.drop(columns=['AT','AH','AP','AFDP','GTEP','TIT','TAT','CDP', 'CO', 'NOX'])
+x_data = data.drop(columns=['TEY', 'CO', 'NOX'])
+y_data = data.drop(columns=['AT','AH','AP','AFDP','GTEP','TIT','TAT','CDP', 'CO', 'NOX'])
 #x_val = val.drop(columns=['TEY', 'CO', 'NOX'])
 #y_val = val.drop(columns=['AT','AH','AP','AFDP','GTEP','TIT','TAT','CDP', 'CO', 'NOX'])
 #x_test = test.drop(columns=['TEY', 'CO', 'NOX'])
@@ -28,12 +31,10 @@ no_splits = 5
 kf = KFold(n_splits = no_splits, shuffle=True)
 fold_no = 0
 accuracy = [None] * no_splits
-for train, test in kf.split(x_data, y_data):
+for train, test in kf.split(x_data):
     # set up training and validation data
     x_train, x_val = train_test_split(x_data[train], test_size=0.18)
     y_train, y_val = train_test_split(y_data[train], test_size=0.18)
-
-    print(x_data[test])
 
     # create layers and model
     inputs = keras.Input(shape=(8,))
